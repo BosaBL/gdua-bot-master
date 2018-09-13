@@ -6,7 +6,7 @@ const fs = require("fs");
 const statuses = ['www.clangdua.com', 'Mundo Vs Mundo los Viernes', 'Misiones los Sábados', 'Con música O.o']
 const prefix = "b.";
 const bprefix = ".";
-const dueñoID = process.env.dueñoID;
+const duenoID = process.env.dueno;
 
 const bot = new Discord.Client()
 
@@ -47,7 +47,7 @@ bot.on("ready", async () => {
 ║╚╩═║╔╝╚╝║║╚═╝║║╔═╗║     ─╚╗╔╝─╔╝╚╗
 ╚═══╝╚═══╝╚═══╝╚╝─╚╝     ──╚╝──╚══╝
   `);
-  bot.users.get(dueñoID).send(`
+  bot.users.get(duenoID).send(`
 ╔╔═══╗╔═══╗╔╗─╔╗╔═══╗     ╔╗──╔╗─╔╗─
 ║╔═╗║╚╗╔╗║║║─║║║╔═╗║     ║╚╗╔╝║╔╝║─
 ║║─╚╝─║║║║║║─║║║║─║║     ╚╗║║╔╝╚╗║─
