@@ -48,7 +48,7 @@ bot.on("ready", async () => {
 ╚═══╝╚═══╝╚═══╝╚╝─╚╝     ──╚╝──╚══╝
   `);
   bot.users.get(duenoID).send(`
-╔╔═══╗╔═══╗╔╗─╔╗╔═══╗     ╔╗──╔╗─╔╗─
+╔═══╗╔═══╗╔╗─╔╗╔═══╗     ╔╗──╔╗─╔╗─
 ║╔═╗║╚╗╔╗║║║─║║║╔═╗║     ║╚╗╔╝║╔╝║─
 ║║─╚╝─║║║║║║─║║║║─║║     ╚╗║║╔╝╚╗║─
 ║║╔═╗─║║║║║║─║║║╚═╝║     ─║╚╝║──║║─
@@ -68,10 +68,10 @@ bot.on("message", async message => {
   let args = messageArray.slice(1);
 
   if(!message.content.startsWith(bprefix)) return;
-  if(!message.author.id === dueñoID) return;
+  if(!message.author.id === duenoID) return;
 
   let cmd = bot.commands.get(command.slice(bprefix.length));
-	if(cmd) cmd.run(bot, message, args, dueñoID)
+	if(cmd) cmd.run(bot, message, args, duenoID)
 	
 	if(message.content.toLowerCase() === `${bprefix}reload`) return message.channel.send(
 			{embed:{
