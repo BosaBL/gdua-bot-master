@@ -80,19 +80,27 @@ bot.on("message", async message => {
 
 });
 ////////////////////////////////////////////////////////////////////////
-bot.on("message", async message => {
-    if(message.author.bot) return;
-    if(message.DMChannel) return;
-    if (!message.content.startsWith(prefix)) return;
-    let messageArray = message.content.split(" ");
-  	let command = messageArray[0];
-  	let args = messageArray.slice(1);
+bot.on("message", async message =>{
+  if(message.channel.id === "481634083466641408") {
+    if(!message.author.bot) {
+      if(!message.content.startsWith("!")) return message.channel.send(`${message.author} en este canal solamente puedes usar el comando \`!consulta\` para revisar tus puntos y/o tu nivel actual.`).then(msg => msg.delete(10000) + message.delete())
+    }
+  }
+})
+////////////////////////////////////////////////////////////////////////
+// bot.on("message", async message => {
+//     if(message.author.bot) return;
+//     if(message.DMChannel) return;
+//     if (!message.content.startsWith(prefix)) return;
+//     let messageArray = message.content.split(" ");
+//   	let command = messageArray[0];
+//   	let args = messageArray.slice(1);
 
-    if (!message.member.roles.has('473829976924356618')) return message.author.send(`Para usar nuestro bot necesitas ser miembro de __***Guerreros de la Ultima Alianza***__, para más información visita https://www.clangdua.com`).then(message.delete());
+//     if (!message.member.roles.has('473829976924356618')) return message.author.send(`Para usar nuestro bot necesitas ser miembro de __***Guerreros de la Ultima Alianza***__, para más información visita https://www.clangdua.com`).then(message.delete());
 
-		let cmd = bot.commands.get(command.slice(prefix.length));
-		if(cmd) cmd.run(bot, message, args, dueñoID);
-});
+// 		let cmd = bot.commands.get(command.slice(prefix.length));
+// 		if(cmd) cmd.run(bot, message, args, dueñoID);
+// });
 
 bot.on("ready", () => {
   setInterval(function() {
