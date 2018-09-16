@@ -102,6 +102,12 @@ bot.on("message", async message =>{
 // 		if(cmd) cmd.run(bot, message, args, dueñoID);
 // });
 
+bot.on("voiceStateUpdate", oldMember => {
+  if(oldMember.voiceChannel) {
+    bot.channels.get('490798674654396427').send(`${oldMember.displayName} ha abandonado el canal \`${oldMember.voiceChannel.name}\`\n  `)
+  }
+  });
+
 bot.on("ready", () => {
   setInterval(function() {
     let status = Math.floor(Math.random()*(statuses.length));
