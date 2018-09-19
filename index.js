@@ -108,9 +108,9 @@ bot.on('voiceStateUpdate', (oldMember, newMember) => {
   let channel = bot.channels.get('490798674654396427')
 
   if(oldUserChannel === undefined && newUserChannel !== undefined) {
-    channel.send(`${newMember.nickname} ha entrado al canal \`${newUserChannel.name}\``)
+    channel.send(`${newMember.displayName} ha entrado al canal \`${newUserChannel.name}\``)
   } else if(newUserChannel === undefined){ 
-    channel.send(`${oldMember.nickname} ha abandonado el canal \`${oldUserChannel.name}\``)
+    channel.send(`${oldMember.displayName} ha abandonado el canal \`${oldUserChannel.name}\``)
   }
 });
 
