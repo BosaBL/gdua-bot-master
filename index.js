@@ -88,20 +88,6 @@ bot.on("message", async message =>{
   }
 })
 ////////////////////////////////////////////////////////////////////////
-// bot.on("message", async message => {
-//     if(message.author.bot) return;
-//     if(message.DMChannel) return;
-//     if (!message.content.startsWith(prefix)) return;
-//     let messageArray = message.content.split(" ");
-//   	let command = messageArray[0];
-//   	let args = messageArray.slice(1);
-
-//     if (!message.member.roles.has('473829976924356618')) return message.author.send(`Para usar nuestro bot necesitas ser miembro de __***Guerreros de la Ultima Alianza***__, para más información visita https://www.clangdua.com`).then(message.delete());
-
-// 		let cmd = bot.commands.get(command.slice(prefix.length));
-// 		if(cmd) cmd.run(bot, message, args, dueñoID);
-// });
-
 bot.on('voiceStateUpdate', (oldMember, newMember) => {
   let newUserChannel = newMember.voiceChannel
   let oldUserChannel = oldMember.voiceChannel
@@ -120,5 +106,25 @@ bot.on("ready", () => {
     bot.user.setActivity(statuses[status], {type: "PLAYING"});
   }, 10000)
 });
+//////////////////////////////////////////////////////////////////////////////////////////
+bot.on('guildMemberAdd', member => {
+  let channel = bot.channels.get('490798674654396427');
+  let embed = new Discord.RichEmbed()
+    .setColor(0x0000FF)
+    .setTitle(`**\`${member.displayName}\`** se ha unido a el servidor.`)
+    .setTimestamp()
+    return channel.send(embed);
+})
+
+bot.on('guildMemberRemove', member => {
+  let channel = bot.channels.get('490798674654396427');
+  let embed = new Discord.RichEmbed()
+    .setColor(0xFF0000)
+    .setTitle(`**\`${member.displayName}\`** Ha dejado el servidor`)
+    .setTimestamp()
+    return channel.send(embed);
+})
+////////////////////////////////////////////////////////////////////////////////////////////
+
 
 bot.login(token);
