@@ -114,7 +114,7 @@ bot.on('guildMemberAdd', member => {
     .setTitle(`**\`${member.displayName}\`** se ha unido a el servidor.`)
     .setTimestamp()
     return channel.send(embed);
-})
+});
 
 bot.on('guildMemberRemove', member => {
   let channel = bot.channels.get('490798674654396427');
@@ -123,8 +123,26 @@ bot.on('guildMemberRemove', member => {
     .setTitle(`**\`${member.displayName}\`** Ha dejado el servidor`)
     .setTimestamp()
     return channel.send(embed);
-})
+});
 ////////////////////////////////////////////////////////////////////////////////////////////
+bot.on('messageDelete', async message => {
+  let logs = await message.guild.fetchAuditLogs(['MESSAGE_DELETE']);
+  let entry = logs.entries.first()
+  if(entry.executor.bot) return;
+  if(message.author.bot) return;
+    let embed = new Discord.RichEmbed()
+    .setTitle("**__Mensaje eliminado__**")
+    .setColor("#ff0000")
+    .addField("*Autor*", message.author.tag, true)
+    .addField("*Canal*", message.channel, true)
+    .addField("*Mensaje*", message.content)
+    .addField("*Lo eliminó*", entry.executor)
+    .addField("*Fecha*", new Date())
+  let channel = message.guild.channels.find(x => x.name === "bot");
+  channel.send({embed})
+});
+////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 bot.login(token);
