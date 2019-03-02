@@ -138,7 +138,7 @@ bot.on('messageDelete', async message => {
     .addField("*Mensaje*", message.content)
     .addField("*Lo eliminó*", entry.executor)
     .addField("*Fecha*", new Date())
-  let channel = message.guild.channels.find(x => x.name === "bot");
+  let channel = message.guild.channels.find(x => x.name === "mensajes-eliminados");
   channel.send({embed})
 });
 ////////////////////////////////////////////////////////////////////////////////////////////
