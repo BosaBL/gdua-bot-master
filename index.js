@@ -129,7 +129,7 @@ bot.on('messageDelete', async message => {
   let logs = await message.guild.fetchAuditLogs(['MESSAGE_DELETE']);
   let entry = logs.entries.first()
   let botchannel = message.guild.channels.find(x => x.name === "bot_musica");
-  
+
   if(message.channel === botchannel) return;
   if(entry.executor.bot) return;
   if(message.author.bot) return;
@@ -140,7 +140,7 @@ bot.on('messageDelete', async message => {
     .addField("*Autor*", message.author.tag, true)
     .addField("*Canal*", message.channel, true)
     .addField("*Mensaje*", message.content)
-    .addField("*Lo eliminó*", entry.executor)
+    .addField("*Lo eliminó*", entry.executor.tag)
     .addField("*Fecha*", new Date())
   let channel = message.guild.channels.find(x => x.name === "mensajes-eliminados");
   channel.send({embed})
