@@ -128,8 +128,12 @@ bot.on('guildMemberRemove', member => {
 bot.on('messageDelete', async message => {
   let logs = await message.guild.fetchAuditLogs(['MESSAGE_DELETE']);
   let entry = logs.entries.first()
+  let botchannel = message.guild.channels.find(x => x.name === "bot_musica");
+  
+  if(message.channel === botchannel) return;
   if(entry.executor.bot) return;
   if(message.author.bot) return;
+  
     let embed = new Discord.RichEmbed()
     .setTitle("**__Mensaje eliminado__**")
     .setColor("#ff0000")
